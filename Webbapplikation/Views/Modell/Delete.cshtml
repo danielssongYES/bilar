@@ -1,0 +1,96 @@
+﻿@model Webbapplikation.Models.Modeller
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Modeller</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.namn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.namn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konfig)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konfig)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.volym)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.volym)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kaross)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kaross)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cyl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cyl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startår)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startår)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slutår)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slutår)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beskrivning)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beskrivning)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Märken.namn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Märken.namn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

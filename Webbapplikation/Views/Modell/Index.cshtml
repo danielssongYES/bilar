@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Webbapplikation.Models.Modeller>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Märke
+        </th>
+        <th>
+            Modell
+        </th>
+        <th>
+            Konfig
+        </th>
+        <th>
+            Kaross
+        </th>
+        <th>
+            Årsmodell
+        </th>
+        <th>
+            Beskrivning
+        </th>
+        <th>
+            Cylindervolym
+        </th>
+        <th>
+            Tillverkningsort
+        </th>
+        <th>
+            Tillverkningsland
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Märken.namn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.namn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.konfig)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kaross)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startår)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.beskrivning)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.volym)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Märken.Städer.namn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Märken.Städer.Länder.namn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

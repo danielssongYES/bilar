@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GustavsObjektdatabasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Länder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="namn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="språkid" Type="int" Nullable="false" />
+          <Property Name="namnspråkid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modeller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="namn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="konfig" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="volym" Type="int" Nullable="false" />
+          <Property Name="kaross" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="cyl" Type="int" Nullable="false" />
+          <Property Name="startår" Type="int" Nullable="false" />
+          <Property Name="slutår" Type="int" />
+          <Property Name="märkeid" Type="int" Nullable="false" />
+          <Property Name="beskrivning" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Märken">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="namn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="stadid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Städer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="namn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="landid" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Modeller__märkei__01142BA1">
+          <End Role="Märken" Type="Self.Märken" Multiplicity="1" />
+          <End Role="Modeller" Type="Self.Modeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Märken">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Modeller">
+              <PropertyRef Name="märkeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Märken__stadid__02FC7413">
+          <End Role="Städer" Type="Self.Städer" Multiplicity="1" />
+          <End Role="Märken" Type="Self.Märken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Städer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Märken">
+              <PropertyRef Name="stadid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Städer__landid__04E4BC85">
+          <End Role="Länder" Type="Self.Länder" Multiplicity="1" />
+          <End Role="Städer" Type="Self.Städer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Länder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Städer">
+              <PropertyRef Name="landid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GustavsObjektdatabasModelStoreContainer">
+          <EntitySet Name="Länder" EntityType="Self.Länder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modeller" EntityType="Self.Modeller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Märken" EntityType="Self.Märken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Städer" EntityType="Self.Städer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Modeller__märkei__01142BA1" Association="Self.FK__Modeller__märkei__01142BA1">
+            <End Role="Märken" EntitySet="Märken" />
+            <End Role="Modeller" EntitySet="Modeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Märken__stadid__02FC7413" Association="Self.FK__Märken__stadid__02FC7413">
+            <End Role="Städer" EntitySet="Städer" />
+            <End Role="Märken" EntitySet="Märken" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Städer__landid__04E4BC85" Association="Self.FK__Städer__landid__04E4BC85">
+            <End Role="Länder" EntitySet="Länder" />
+            <End Role="Städer" EntitySet="Städer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GustavsObjektdatabasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Länder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="namn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="språkid" Type="Int32" Nullable="false" />
+          <Property Name="namnspråkid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Städer" Relationship="Self.FK__Städer__landid__04E4BC85" FromRole="Länder" ToRole="Städer" />
+        </EntityType>
+        <EntityType Name="Modeller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="namn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="konfig" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="volym" Type="Int32" Nullable="false" />
+          <Property Name="kaross" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="cyl" Type="Int32" Nullable="false" />
+          <Property Name="startår" Type="Int32" Nullable="false" />
+          <Property Name="slutår" Type="Int32" />
+          <Property Name="märkeid" Type="Int32" Nullable="false" />
+          <Property Name="beskrivning" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Märken" Relationship="Self.FK__Modeller__märkei__01142BA1" FromRole="Modeller" ToRole="Märken" />
+        </EntityType>
+        <EntityType Name="Märken">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="namn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stadid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Modeller" Relationship="Self.FK__Modeller__märkei__01142BA1" FromRole="Märken" ToRole="Modeller" />
+          <NavigationProperty Name="Städer" Relationship="Self.FK__Märken__stadid__02FC7413" FromRole="Märken" ToRole="Städer" />
+        </EntityType>
+        <EntityType Name="Städer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="namn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="landid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Länder" Relationship="Self.FK__Städer__landid__04E4BC85" FromRole="Städer" ToRole="Länder" />
+          <NavigationProperty Name="Märken" Relationship="Self.FK__Märken__stadid__02FC7413" FromRole="Städer" ToRole="Märken" />
+        </EntityType>
+        <Association Name="FK__Städer__landid__04E4BC85">
+          <End Role="Länder" Type="Self.Länder" Multiplicity="1" />
+          <End Role="Städer" Type="Self.Städer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Länder">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Städer">
+              <PropertyRef Name="landid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Modeller__märkei__01142BA1">
+          <End Role="Märken" Type="Self.Märken" Multiplicity="1" />
+          <End Role="Modeller" Type="Self.Modeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Märken">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Modeller">
+              <PropertyRef Name="märkeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Märken__stadid__02FC7413">
+          <End Role="Städer" Type="Self.Städer" Multiplicity="1" />
+          <End Role="Märken" Type="Self.Märken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Städer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Märken">
+              <PropertyRef Name="stadid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GustavsObjektdatabasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Länder" EntityType="Self.Länder" />
+          <EntitySet Name="Modeller" EntityType="Self.Modeller" />
+          <EntitySet Name="Märken" EntityType="Self.Märken" />
+          <EntitySet Name="Städer" EntityType="Self.Städer" />
+          <AssociationSet Name="FK__Städer__landid__04E4BC85" Association="Self.FK__Städer__landid__04E4BC85">
+            <End Role="Länder" EntitySet="Länder" />
+            <End Role="Städer" EntitySet="Städer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Modeller__märkei__01142BA1" Association="Self.FK__Modeller__märkei__01142BA1">
+            <End Role="Märken" EntitySet="Märken" />
+            <End Role="Modeller" EntitySet="Modeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Märken__stadid__02FC7413" Association="Self.FK__Märken__stadid__02FC7413">
+            <End Role="Städer" EntitySet="Städer" />
+            <End Role="Märken" EntitySet="Märken" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GustavsObjektdatabasModelStoreContainer" CdmEntityContainer="GustavsObjektdatabasEntities">
+          <EntitySetMapping Name="Länder">
+            <EntityTypeMapping TypeName="GustavsObjektdatabasModel.Länder">
+              <MappingFragment StoreEntitySet="Länder">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="namn" ColumnName="namn" />
+                <ScalarProperty Name="språkid" ColumnName="språkid" />
+                <ScalarProperty Name="namnspråkid" ColumnName="namnspråkid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modeller">
+            <EntityTypeMapping TypeName="GustavsObjektdatabasModel.Modeller">
+              <MappingFragment StoreEntitySet="Modeller">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="namn" ColumnName="namn" />
+                <ScalarProperty Name="konfig" ColumnName="konfig" />
+                <ScalarProperty Name="volym" ColumnName="volym" />
+                <ScalarProperty Name="kaross" ColumnName="kaross" />
+                <ScalarProperty Name="cyl" ColumnName="cyl" />
+                <ScalarProperty Name="startår" ColumnName="startår" />
+                <ScalarProperty Name="slutår" ColumnName="slutår" />
+                <ScalarProperty Name="märkeid" ColumnName="märkeid" />
+                <ScalarProperty Name="beskrivning" ColumnName="beskrivning" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Märken">
+            <EntityTypeMapping TypeName="GustavsObjektdatabasModel.Märken">
+              <MappingFragment StoreEntitySet="Märken">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="namn" ColumnName="namn" />
+                <ScalarProperty Name="stadid" ColumnName="stadid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Städer">
+            <EntityTypeMapping TypeName="GustavsObjektdatabasModel.Städer">
+              <MappingFragment StoreEntitySet="Städer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="namn" ColumnName="namn" />
+                <ScalarProperty Name="landid" ColumnName="landid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
