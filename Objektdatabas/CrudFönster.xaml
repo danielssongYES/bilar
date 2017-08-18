@@ -1,0 +1,72 @@
+﻿<Window x:Class="Objektdatabas.CrudFönster"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="480" d:DesignWidth="900"
+			 Loaded="FönsterInläst">
+	<Grid>
+		<TabControl>
+			<TabItem Header="Detaljerad lista">
+				<Grid>
+					<DataGrid Name="detaljDataGrid" AutoGenerateColumns="True">
+
+					</DataGrid>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Generera data">
+				<Grid Width="300">
+					<StackPanel>
+						<TextBox Name="antalBox" Margin="0,60,0,0">
+						</TextBox>
+						<StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+							<Button Name="hämtaNamnButton" Content="Hämta namn" Width="100" Click="dataKlicka">
+							</Button>
+							<Button Name="hämtaOrdButton" Content="Hämta ord" Width="100" Click="dataKlicka">
+							</Button>
+							<Button Name="hämtaAdjektivButton" Content="Hämta adjektiv" Width="100" Click="dataKlicka">
+							</Button>
+						</StackPanel>
+						<StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+							<Button Name="genereraMärkenButton" Content="Generera märken" Width="150" Click="dataKlicka">
+							</Button>
+							<Button Name="genereraModellerButton" Content="Generera modeller" Width="150" Click="dataKlicka">
+							</Button>
+						</StackPanel>
+						<ProgressBar Name="förlopp" Margin="0,40,0,0" Height="20" Minimum="0" Maximum="100">
+						</ProgressBar>
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Redigera märken">
+				<Grid>
+					<StackPanel>
+						<DataGrid Name="märkenDataGrid" SelectionMode="Extended" AutoGenerateColumns="True" Height="382">
+
+						</DataGrid>
+						<StackPanel Orientation="Horizontal" Height="40">
+							<Button Content="Spara" Height="25" Width="100"></Button>
+							<Button Content="Ångra" Height="25" Width="100"></Button>
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Redigera modeller">
+				<Grid>
+					<StackPanel>
+						<DataGrid Name="modellerDataGrid" SelectionMode="Extended" AutoGenerateColumns="True" Height="382">
+
+						</DataGrid>
+						<StackPanel Orientation="Horizontal" Height="40">
+							<Button Content="Spara" Height="25" Width="100"></Button>
+							<Button Content="Ångra" Height="25" Width="100"></Button>
+						</StackPanel>
+					</StackPanel>
+					
+					
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
